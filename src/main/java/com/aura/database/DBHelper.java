@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class DBHelper {
 
 	/**
-	 * 事务提交
+	 * 事务提交 
 	 */
 	public static void commit(Connection conn){
 		try {
