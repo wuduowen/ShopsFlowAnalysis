@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+<!--metastore server 的地址，即 hive 本机地址加 9083 端口号 -->
+<property>
+	<name>hive.metastore.uris</name>
+	<value>thrift://bigdata:9083</value>
+</property>
+<!--hiveserver 向外暴露的端口号-->
+<property>
+	<name>hive.server2.thrift.port</name>
+	<value>10000</value>
+</property>
+<!--metastore 连接到 Mysql 的 drive 地址, mysql 地址+3306 端口-->
+<property>
+	<name>javax.jdo.option.ConnectionURL</name>
+	<value>jdbc:mysql://bigdata:3306/hive?createDatabaseIfNotExist=true&amp;char
+acterEncoding=UTF-8</value>
+</property>
+<!--metastoreDB 的 driver-->
+<property>
+	<name>javax.jdo.option.ConnectionDriverName</name>
+	<value>com.mysql.jdbc.Driver</value>
+</property>
+<property>
+	<name>javax.jdo.option.ConnectionUserName</name>
+	<value>hadoop</value>
+</property>
+<property>
+	<name>javax.jdo.option.ConnectionPassword</name>
+	<value>hadoop</value>
+</property>
+<!--是否在启动的时候要经过 schema 的验证-->
+<property>
+	<name>hive.metastore.schema.verification</name>
+	<value>false</value>
+</property>
+<!--hive 数据存储到 Hdfs 上的哪个路径-->
+<property>
+	<name>hive.metastore.warehouse.dir</name>
+	<value>/Hive</value>
+</property>
+<!--hdfs 的地址-->
+<property>
+	<name>fs.defaultFS</name>
+	<value>hdfs://bigdata:9000</value>
+</property>
+<!--自动建立 schema-->
+<property>
+	<name>datanucleus.autoCreateSchema</name>
+	<value>true</value>
+</property>
+<property>
+	<name>datanucleus.autoStartMechanism</name>
+	<value>SchemaTable</value>
+</property>
+<property>
+	<name>datanucleus.schema.autoCreateTables</name>
+	<value>true</value>
+</property>
+<!--hive 对外的用户名和密码-->
+<property>
+	<name>beeline.hs2.connection.user</name>
+	<value>bigdata</value>
+</property>
+<property>
+	<name>beeline.hs2.connection.password</name>
+	<value>bigdata</value>
+</property>
+<property>
+	<name>hive.metastore.client.socket.timeout</name>
+	<value>500</value>
+</property>
+</configuration>
