@@ -15,6 +15,7 @@ primary key (shop_id)
 ) default charset=utf8;
 
 
+
 LOAD DATA LOCAL INFILE '/home/zkpk/Documents/dataset/shop_info.txt'
 INTO TABLE koubei.shop_info
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
