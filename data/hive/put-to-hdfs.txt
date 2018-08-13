@@ -1,0 +1,2 @@
+hdfs dfs -put user_view.txt /data
+hdfs dfs -put user_pay.txt /data
