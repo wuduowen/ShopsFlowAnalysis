@@ -1,0 +1,1 @@
+bin/spark-submit --master local[*]  --class com.aura.spark.dataframe.HiveJDBCTopTransShop  /home/bigdata/jar/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar
