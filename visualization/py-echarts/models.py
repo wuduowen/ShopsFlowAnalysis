@@ -113,6 +113,25 @@ class Chart(dict):
             [legend_data.append(x) for x in data if x not in legend_data]
         return self
 
+    def bar(self, name, data=None, auto_legend=True, y_axis_index=0, **kwargs):
+        """
+        添加一个柱状图
+        `data`: [10, 20, 30, 40]
+        `auto_legend`: 自动生成图例
+        """
+        data = [] if data is None else data
+        self["series"].append(self.__merge_dict({
+            "type": "bar",
+            "name": name,
+            "data": data,
+            "yAxisIndex": y_axis_index
+        }, kwargs))
+        if "yAxis" not in self:
+            self.y_axis()
+        if name not in self["legend"]["data"] and auto_legend:
+            self["legend"]["data"].append(name)
+        return self
+
     def line(self, name, data=None, date = None, mark_max_point=False, mark_min_point=False, show_item_label=False, auto_legend=True, y_axis_index=0, **kwargs):
         """
         添加一个折线图

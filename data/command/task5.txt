@@ -1,0 +1,61 @@
+1.启动关联服务
+sudo service mysqld start;
+cd $KAFKA_HOME
+ bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+bin/kafka-server-start.sh  -daemon config/server.properties
+jps
+bin/kafka-topics.sh --create --zookeeper bigdata:2181 --replication-factor 1 --partitions 1 --topic user_pay //only once
+ cd redis install directory
+ nohup ./src/redis-server >nohup.out2 2>&1 &
+
+./src/redis-cli
+keys *
+flushdb
+keys *
+
+
+2.开始生产数据
+cat producer.shell
+java -cp ~/jars/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar com.aura.kafka.UserPayProducer use_pay.txt     //hdfs://bigdata:9000/alibaba/user_pay.txt
+./producer.shell
+
+
+3.开始消费数据
+cat consumer.shell
+spark-submit --master local[3] --class com.aura.spark.SparkStreamingAna --name testshop ~/jars/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar
+./consumer.shell
+
+start print
+stop print
+shopid:1862---jiaoyi num:504
+city:上海---city num:504
+shopid:1862---jiaoyi num:5
+city:上海---city num:5
+
+4.确认redis中的内容
+127.0.0.1:6379> hgetall city-jiaoyi
+1) "\xe4\xb8\x8a\xe6\xb5\xb7"
+2) "509"
+
+127.0.0.1:6379> hgetall shop-jiaoyi
+1) "1862"
+2) "509"
+127.0.0.1:6379> 
+
+
+5. serach redis
+
+6. 可视化
+
+需要将 hive 的 site 配置文件拷贝到 spark 的 conf 目录下，并在 Spark SQL 工程中引入 mysql 工具类的依赖。
+
+编程代码：
+
+//    加载hive中的数据val hiveDF = spark.table(hiveTable)//    可以直接调用DataFrame的API也可以通过sql来执行hiveDF.select(...)
+spark.sql("select * ...")//    将数据写入到新的table中result.write.saveAsTable(tableName)
+
+
+
+
+
+

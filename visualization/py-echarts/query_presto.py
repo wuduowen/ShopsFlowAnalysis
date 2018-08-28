@@ -11,6 +11,8 @@ TRANSACTION_COUNT_QUERY="SELECT p.partition_date, count(*) as paycount FROM user
 
 VIEW_COUNT_QUERY="SELECT v.partition_date, count(*) as viewcount FROM user_view_p v GROUP BY v.partition_date order by v.partition_date"
 
+TOP_10_ShOP="select shop_id, avg_trans from shop_avg_trans limit 10"
+
 class Presto_Query:
 
     def query_city_price_total(self):
@@ -53,3 +55,22 @@ class Presto_Query:
         cursor.execute(VIEW_COUNT_QUERY)
         tuples=cursor.fetchall()
         return tuples
+
+    def query_top_10_shop(self):
+        conn = presto.connect(**PRESTO_SERVER)
+        cursor = conn.cursor()
+        cursor.execute(TOP_10_ShOP)
+        tuples=cursor.fetchall()
+        return tuples
+
+    def getKeys(self,tuples):
+        keys=[]
+        for tuple in tuples:
+            keys.append(tuple[0])
+        return keys
+
+    def getValues(self, tuples):
+        values=[]
+        for tuple in tuples:
+            values.append(tuple[1])
+        return values

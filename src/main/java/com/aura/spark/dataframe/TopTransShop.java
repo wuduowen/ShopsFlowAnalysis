@@ -2,7 +2,7 @@ package com.aura.spark.dataframe;
 
 import java.sql.*;
 
-public class HiveJDBCTopTransShop {
+public class TopTransShop {
 
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
 
