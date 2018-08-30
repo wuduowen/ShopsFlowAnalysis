@@ -43,19 +43,3 @@ city:上海---city num:5
 127.0.0.1:6379> 
 
 
-5. serach redis
-
-6. 可视化
-
-需要将 hive 的 site 配置文件拷贝到 spark 的 conf 目录下，并在 Spark SQL 工程中引入 mysql 工具类的依赖。
-
-编程代码：
-
-//    加载hive中的数据val hiveDF = spark.table(hiveTable)//    可以直接调用DataFrame的API也可以通过sql来执行hiveDF.select(...)
-spark.sql("select * ...")//    将数据写入到新的table中result.write.saveAsTable(tableName)
-
-
-
-
-
-

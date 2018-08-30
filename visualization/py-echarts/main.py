@@ -11,20 +11,24 @@ app = Flask(__name__)
 def index():
     presto=Presto_Query()
 
+    # 以城市为单位，统计每个城市总体消费金额
     city_price_total_tuples=presto.query_city_price_total()
     city_data=presto.getData(city_price_total_tuples)
     chart1=Chart().pie("饼图", data=city_data)
 
+    # 以天为单位，统计所有商家交易发生次数
     transaction_count_tuples=presto.query_transaction_count()
     xAxisData=presto.getPayXData(transaction_count_tuples)
     yAxisData=presto.getPayYData(transaction_count_tuples)
     chart2= Chart().line("折线图",data=yAxisData, date = xAxisData)
 
+    # 以天为单位，统计所有商家被用户浏览次数
     view_count_tuples=presto.query_view_count()
     xAxisData=presto.getPayXData(view_count_tuples)
     yAxisData=presto.getPayYData(view_count_tuples)
     chart3= Chart().line("折线图",data = yAxisData, date = xAxisData)
 
+    #平均日交易额最大的前 10 个商家
     top_10_shop_tuples=presto.query_top_10_shop()
     keys=presto.getKeys(top_10_shop_tuples)
     values=presto.getValues(top_10_shop_tuples)

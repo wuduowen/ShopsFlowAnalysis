@@ -1,6 +1,5 @@
 平均日交易额最大的前 10 个商家
-spark-submit --master local[*]  --class com.aura.spark.dataframe.TopTransShop /home/bigdata/jars/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar
-
+java -cp /home/bigdata/jars/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar com.aura.spark.dataframe.TopTransShop
 
 北京、上海和广州三个城市最受欢迎的 10 家火锅商店编号
-spark-submit --master local[*]  --class com.aura.spark.dataframe.HotShop /home/bigdata/jars/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar
+java -cp /home/bigdata/jars/shops-flow-analysis-0.1.0-SNAPSHOT-jar-with-dependencies.jar com.aura.spark.dataframe.HotShop

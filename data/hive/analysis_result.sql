@@ -19,8 +19,8 @@ ORDER BY total_trans desc;
 
 
 -- 3.北京、上海和广州三个城市最受欢迎的 10 家火锅商店编号
-
-SELECT shop_id, city_name, 0.7 *(score/5) + 0.3*(per_pay/((SELECT MAX(CAST(per_pay AS SIGNED)) FROM shop_info )* 1.0)) as hot
+insert  into koubei.hot_shop
+SELECT shop_id, city_name, 0.7 *score/5 + 0.3*per_pay/20 as hot
 FROM shop_info WHERE city_name in ('北京', '上海', '广州') AND cate_2_name LIKE '%火锅%' ORDER BY hot desc LIMIT 10;
 
 
